@@ -1,5 +1,5 @@
-/* offline cache — version 202611280307 */
-var C="shakir-202611280307",F=["./","./index.html","./manifest.webmanifest","./icon-192.png","./icon-512.png","./apple-touch-icon.png"];
+/* offline cache — version 202611280342 */
+var C="shakir-202611280342",F=["./","./index.html","./manifest.webmanifest","./icon-192.png","./icon-512.png","./apple-touch-icon.png"];
 /* install: cache each file on its own, so one missing file never breaks the whole update */
 self.addEventListener("install",function(e){e.waitUntil(caches.open(C).then(function(c){return Promise.all(F.map(function(u){return fetch(new Request(u,{cache:"reload"})).then(function(res){if(res&&res.ok&&!res.redirected)return c.put(u,res)}).catch(function(){})}))}));self.skipWaiting()});
 self.addEventListener("activate",function(e){e.waitUntil(caches.keys().then(function(k){return Promise.all(k.filter(function(x){return x!==C&&x.indexOf("shakir-")===0}).map(function(x){return caches.delete(x)}))}).then(function(){return self.clients.claim()}))});
